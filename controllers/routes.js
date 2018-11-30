@@ -31,7 +31,7 @@ router.get("/scrape", function(req,res){
               title: title,
               link: link
             });
-            // console.log(results)
+            console.log(results)
             Recipes.create(results)
             //this file isnt working and i have literally no idea why, its exactly like it was on the example we did in class
                             .then(function (Recipes) {
@@ -60,6 +60,12 @@ console.log(Recipes);
 res.redirect("/");
         });
       
+
+
+
+        //router.post("/comments", function(req,res){
+            //the route would go though recipes and add a comment to the recipe at the id that is generated.
+        //
 
 
 
