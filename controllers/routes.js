@@ -31,31 +31,33 @@ router.get("/scrape", function(req,res){
               title: title,
               link: link
             });
-            console.log(results)
+            // console.log(results)
             Recipes.create(results)
             //this file isnt working and i have literally no idea why, its exactly like it was on the example we did in class
-                            .then(function (dbRecipes) {
-                                console.log(dbRecipes);
+                            .then(function (Recipes) {
+                                // console.log(dbRecipes);
                             })
                             .catch(function (err) {
-                                return res.json(err)
+                                console.log(err)
                             });
                     });
+                    
           });
-//         $("").each(function (i, element) {
+//         $("div.fd-recipe").each(function (i, element) {
 //             console.log(i)
 //   let result = [];
 //             result.title = $(this).find("h2").text("a");
 //             result.link = $(this).find("h2").find("a").attr("href");
 //            console.log(result)
-//             db.Recipes.create(result)
+//             Recipes.create(result)
 //                 .then(function (dbRecipes) {
 //                     console.log(dbRecipes);
 //                 })
 //                 .catch(function (err) {
 //                     return res.json(err)
 //                 });
-res.send("scrape is done");
+console.log(Recipes);
+res.redirect("/");
         });
       
 
