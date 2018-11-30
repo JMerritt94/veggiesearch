@@ -1,0 +1,24 @@
+<div class="containter">
+    <div class="row">
+        <div class="col-xs-12 text-center enter_section">
+            <form action="/scrape" method="GET">
+            
+            <button type="submit" class="btn btn-primary" id="text-enter-button"> Search for recipes</button>
+            <p>I hope you enjoy this Mongo scraping handlebars app I made for my GF</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{#each recipe}}
+<div class="story-body card container" id={{this._id}}>
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{this.link}}" target="_blank">{{this.title}}</a>
+        </h5>
+        </form>
+    <img class="media" src="{{this.img}}">
+    </div>
+</div>
+{{/each}}
