@@ -16,28 +16,52 @@ router.get("/", function(req, res) {
 
 router.get("/scrape", function(req,res){
  
-    axios.get("https://www.geniuskitchen.com/topic/vegetarian").then(function(response) {
+    axios.get("https://old.reddit.com/r/vegetarian/").then(function(response) {
         const $ = cheerio.load(response.data);
-      
-        $("h2").each(function (i, element) {
-            console.log(i)
-  let recipe = [];
-            recipe.title = $(this).find("h2").text("a");
-            recipe.link = $(this).find("h2").find("a").attr("href");
-           console.log(recipe)
-            db.Recipes.create(recipe)
-                .then(function (dbRecipes) {
-                    console.log(dbRecipes);
-                })
-                .catch(function (err) {
-                    return res.json(err)
-                });
+        $("p.title").each(function(i, element) {
+
+            let results= [];
+            // Save the text of the element in a "title" variable
+            var title = $(element).text();
+        
+            
+            var link = $(element).children().attr("href");
+        
+            // Save these results in an object that we'll push into the results array we defined earlier
+            results.push({
+              title: title,
+              link: link
+            });
+            console.log(results)
+            db.Recipes.create(results)
+                            .then(function (dbRecipes) {
+                                console.log(dbRecipes);
+                            })
+                            .catch(function (err) {
+                                return res.json(err)
+                            });
+                    });
+          });
+//         $("").each(function (i, element) {
+//             console.log(i)
+//   let result = [];
+//             result.title = $(this).find("h2").text("a");
+//             result.link = $(this).find("h2").find("a").attr("href");
+//            console.log(result)
+//             db.Recipes.create(result)
+//                 .then(function (dbRecipes) {
+//                     console.log(dbRecipes);
+//                 })
+//                 .catch(function (err) {
+//                     return res.json(err)
+//                 });
+res.send("scrape is done");
         });
-        res.send("scrape is complete");
+      
 
-    });
 
-})
+
+
 
 module.exports=router;
 
