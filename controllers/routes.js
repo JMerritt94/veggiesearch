@@ -1,6 +1,5 @@
 
-
-const db = require("../models/recipe");
+const Recipes = require("../models/recipe");
 
 const express = require('express');
 const axios = require("axios");
@@ -33,7 +32,8 @@ router.get("/scrape", function(req,res){
               link: link
             });
             console.log(results)
-            db.Recipes.create(results)
+            Recipes.create(results)
+            //this file isnt working and i have literally no idea why, its exactly like it was on the example we did in class
                             .then(function (dbRecipes) {
                                 console.log(dbRecipes);
                             })
