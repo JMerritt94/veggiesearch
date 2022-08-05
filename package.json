@@ -10,7 +10,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "mongood": "0.0.5",
-    "mongoose": "^5.3.14"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {},
   "scripts": {
